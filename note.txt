@@ -1,1 +1,6 @@
 Introduction to html
+
+html = hypertext markup language
+markup - 마크업은 무슨 개념이냐, 만약 텍스트 밑에 ___ 표시가 있으면, 그 텍스트는 볼드체라고 정의하자, 이때 ___ 표시하고 마크업이다. 기존에 있는 텍스트 위에 쓰여지는 개념이기에!
+
+HTML도 비슷한 개념으로 동작한다. 
