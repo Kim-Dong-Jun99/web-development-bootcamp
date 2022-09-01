@@ -52,3 +52,7 @@ pseudo 클래스
 img:hover{
   background-color: gold;
 }
+
+favicon에서 아이콘을 만들고 아이콘을 추가하였다. 왜그런지 모르겠는데 크롬 환경에서만 보인다 원인에 대해서 알아봐야겠다.
+
+div - 화면을 나눠서 구조할 수 있게 해준다 
