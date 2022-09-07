@@ -74,3 +74,5 @@ left, top, bottom, right로 위치를 움직일 수 있다. 사실은 마진으�
 
 
 javascript에서 등호 비교는 ===로 해야한다
+
+sublime text git test commit  
