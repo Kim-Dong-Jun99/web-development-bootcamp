@@ -29,3 +29,205 @@ html 태그 안에 들어가는 것은 모두 다 attribute이다
 텍스트를 가져올때는, .innerHTML에는 다른 html 태그들도 가져온다. 
 그래서 텍스트만 가져오고 싶을때는 .textContent를 써야하고, .innerHTML = <em>hello</em> 이런식으로 html 코드를 추가할 수도 있다
 
+버튼이 클릭되었을때, 이벤트 처리를 어떻게 해야될까?
+document.querySelector로 엘리멘트를 찾고, addEventListener로 추가하면된다
+이때 함수를 코드안에 내장할 수 있고, 외부에서 선언하고 추가할 수 잇는데, () 이 괄호를 빼고 넘겨줘야한다. 아니면 html이 뜰 때 코드가 실행된다
+
+```javascript
+let buttons = document.querySelectorAll(".drum");
+for (const button of buttons) {
+    button.addEventListener("click", function () {
+        alert("I got clicked");
+    });
+}
+```
+이렇게 할 수 있는데, 이건 좀 구리다. 함수 재사용이 안되지 않나
+```javascript
+$0.addEventListener("click", respondToClick);
+
+function respondToClick() {
+    console.log("I got clicked");
+}
+```
+첫번째 파라미터로는 이벤트가 들어가고, 두번째 파라미터로는 그 이벤트가 감지됬을때 실행할 함수가 들어간다. 
+
+그리고 자바스크립트는 함수를 파라미터로 넘겨줄 수 있다. 그래서 함수안에서 함수를 실행할 수 있다. 
+
+```javascript
+let buttons = document.querySelectorAll(".drum");
+for (const button of buttons) {
+    // button.addEventListener("click", function () {
+    //     alert("I got clicked");
+    // });
+    button.addEventListener("click", handleClick);
+}
+
+function handleClick() {
+    console.log(this);
+}
+```
+this를 이용하면 눌린 버튼이 무엇인지 알 수 있다!!
+
+## JavaScript 오브젝트 생성하는 법
+```javascript
+var bellboy = {
+    name: "timmy",
+    age: 19,
+    hasWorkPermit: true,
+    languages: ["french", "english"]
+}
+```
+이렇게 밖에 못할까??
+오브젝트 생성해줄때마다 저거 다 입력하면 너무 귀찮을 듯
+그래서 함수로 생성해준다
+```javascript
+function BellBoy(name, age, hasWorkPermit, languages) {
+    this.name = name;
+    this.age = age;
+    this.hasWorkPermit = hasWorkPermit;
+    this.languages = languages;
+}
+```
+다른 함수들과는 다르게 첫번째 글자를 대문자로 선언하면, constructor 함수로 사용할 수 있다   
+`var bellboy1 = new BellBoy("timmy", 20, true,["french","english])`
+
+오 그리고 신기하게 오브젝트 안에 함수를 넣을 수 있는 것 같다
+```javascript
+var bellboy1 = {
+    name: "timmy",
+    age: 19,
+    hasWorkPermit: true,
+    languages: ["french", "english"],
+    moveSuitcase: function () {
+        alert("move suitcase");
+        pickUpSuitcase();
+        move();
+    }
+}
+```
+```javascript
+function BellBoy(name, age, hasWorkPermit, languages) {
+    this.name = name;
+    this.age = age;
+    this.hasWorkPermit = hasWorkPermit;
+    this.languages = languages;
+    this.clean = function () {
+        alert("cleaning in progress");
+    }
+}
+```
+아직까지는 함수를 넘겨줄때, 파라미터도 같이 넘겨주는 방법은 잘 모르겟다..
+
+```javascript
+document.addEventListener("keydown", function (event) {
+    console.log(event);
+
+});
+```
+오 함수에 이벤트라는 파라미터를 넘겨주어보았다. 결과를 확인해보면 키가 눌릴때마다 어느 키가 눌린 것인지 표시해준다. 
+
+## 콜백 함수의 원리
+```javascript
+
+let buttons = document.querySelectorAll(".drum");
+for (const button of buttons) {
+    // button.addEventListener("click", function () {
+    //     alert("I got clicked");
+    // });
+    button.addEventListener("click", handleClick);
+}
+document.addEventListener("keydown", handleKeyStroke);
+
+function handleClick(event) {
+    console.log(this);
+    console.log(event.type);
+    console.log(event);
+    if (this.style.color === "black") {
+        this.style.color = "#DA0463";
+    }else{
+
+        this.style.color = "black";
+    }
+    let buttonInnerHtml = this.innerHTML;
+    switch (buttonInnerHtml) {
+
+        case "w":
+            let crash = new Audio("sounds/crash.mp3");
+            crash.play();
+            break;
+        case "a":
+            let kick = new Audio("sounds/kick-bass.mp3");
+            kick.play();
+            break;
+        case "s":
+            let snare = new Audio("sounds/snare.mp3");
+            snare.play();
+            break;
+        case "d":
+            let tom1 = new Audio("sounds/tom-1.mp3");
+            tom1.play();
+            break;
+        case "j":
+            let tom2 = new Audio("sounds/tom-2.mp3");
+            tom2.play();
+            break;
+        case "k":
+            let tom3 = new Audio("sounds/tom-3.mp3");
+            tom3.play();
+            break;
+
+        case "l":
+            let tom4 = new Audio("sounds/tom-4.mp3");
+            tom4.play();
+            break;
+    }
+}
+
+function handleKeyStroke(event) {
+    console.log(event);
+    let key = event.key;
+    console.log(key);
+    switch (key) {
+
+        case "w":
+            let crash = new Audio("sounds/crash.mp3");
+            crash.play();
+            break;
+        case "a":
+            let kick = new Audio("sounds/kick-bass.mp3");
+            kick.play();
+            break;
+        case "s":
+            let snare = new Audio("sounds/snare.mp3");
+            snare.play();
+            break;
+        case "d":
+            let tom1 = new Audio("sounds/tom-1.mp3");
+            tom1.play();
+            break;
+        case "j":
+            let tom2 = new Audio("sounds/tom-2.mp3");
+            tom2.play();
+            break;
+        case "k":
+            let tom3 = new Audio("sounds/tom-3.mp3");
+            tom3.play();
+            break;
+
+        case "l":
+            let tom4 = new Audio("sounds/tom-4.mp3");
+            tom4.play();
+            break;
+    }
+}
+```
+작성한 코드이다. 잘 살펴보면
+```javascript
+button.addEventListener("click", handleClick);
+document.addEventListener("keydown", handleKeyStroke);
+```
+우선 addEventListener도 함수 구조로 되어있는 것을 확인할 수 있다. 그리고 첫번째 파라미터로 이벤트의 종류를 넘겨주고, 그 다음에 콜백 함수를 넘겨준다. 이때, 감지한 이벤트와 이벤트 리스너로 설정한 이벤트가 같은 경우에 콜백 함수에 이벤트를 넘겨주는 것 같다. 그래서, handleKeyStroke에 파라미터로 이벤트를 넘겨주고 있지 않지만, 함수를 선언할때, event라는 것을 선언하면 발생한 이벤트를 넘겨받을 수 있다
+
+그럼 여기서 궁금한 점이 다른 파라미터는 혹시 못 넘겨줄까? 더 공부를 해봐야될 것 같다
+
+
