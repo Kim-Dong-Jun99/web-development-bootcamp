@@ -231,3 +231,27 @@ document.addEventListener("keydown", handleKeyStroke);
 그럼 여기서 궁금한 점이 다른 파라미터는 혹시 못 넘겨줄까? 더 공부를 해봐야될 것 같다
 
 
+## JQuery
+그전에 썻던 코드들을 보자, DOM에 오브젝트를 찾는 코드가 좀 길고, query를 쓸 때 코드가 길어지면 불편하다. 이걸 좀 심플하게 할 수 없을까?
+
+그렇게 해서 탄생한 것이 JQuery이다.
+jQuery는 라이브러리이다. JQuery는 쿼리 코드의 길이를 획기적으로 줄여준다!
+
+jQuery는 어떻게 쓸 수 있을까??
+
+jQuery 소스 파일을 확인해보자, 자바스크립트 코드임을 확인할 수 있는데, 파일의 사이즈를 줄이기위해 주석이나, 스페이스가 없음을 확인할 수 잇다. 용량을 줄여서 속도를 올릴 수 있기에 이렇게 처리하는 것 같다. 
+
+jQuery 예제코드
+```javascript
+// $("h1").css("color", "red");
+$("h1").addClass("big-title margin-50");
+$("h1").removeClass("big-title");
+$("h1").text("Good Bye");
+$("button").text("Don't click");
+$("button").html("<em>Hi hello</em>");
+
+$("img").attr("src","/Drum%20Kit/images/kick.png");
+$("a").attr("href", "/index.html");
+
+
+```
