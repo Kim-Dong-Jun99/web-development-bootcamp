@@ -263,3 +263,7 @@ $("a").attr("href", "/index.html");
 
 touch라는 명령어로 파일을 생성하고, open으로 열수 있다
 
+# Node REPL
+
+node 입력하고 enter를 치면, 노드 REPL를 실행하게 된다
+
