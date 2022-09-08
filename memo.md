@@ -266,4 +266,7 @@ touch라는 명령어로 파일을 생성하고, open으로 열수 있다
 # Node REPL
 
 node 입력하고 enter를 치면, 노드 REPL를 실행하게 된다
+npm init을 하면, 패키지를 npm으로 베포할 수 있는 것 같다. 
+npm init을 하면, package.json이 생성된다!
+npm을 이용해서 superheroes라는 패키지를 설치했는데, package.json에 dependencies가 추가되었다.
 
