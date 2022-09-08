@@ -269,4 +269,53 @@ node 입력하고 enter를 치면, 노드 REPL를 실행하게 된다
 npm init을 하면, 패키지를 npm으로 베포할 수 있는 것 같다. 
 npm init을 하면, package.json이 생성된다!
 npm을 이용해서 superheroes라는 패키지를 설치했는데, package.json에 dependencies가 추가되었다.
+```javascript
 
+var superheroes = require("superheroes");
+
+var mySuperHero = superheroes.random();
+console.log(mySuperHero);
+
+var supervillains = require("supervillains");
+var mySuperVillain = supervillains.random();
+console.log(mySuperVillain);
+
+```
+npm에서 다른 패키지를 설치해서 사용해보앗다. require로 외부 패키지를 가져오고, 해당 패키지의 메소드를 사용할 수 있다.
+
+# Express.js
+node 프레임워크이다. node.js는 브라우저에서 부터 자바스크립트를 해방시켜서 컴퓨터에서 직접 사용할 수 있게 하였다. 그 말은 데스크탑 애플리케이션을 node.js로 개발할 수 있다.  express도 이와 유사하게 사용할 수 있다. Express.js는 웹 애플리케이션을 만들때, 반복적인 코드를 줄였다. 
+
+먼저 터미널에서 새로운 폴더를 하나 만들고, 그 안에 js 파일을 하나 만들자. 나는 server.js를 만들었고, 해당 디렉토리에서 npm init을 실행한다. 앞으로 새로운 서버를 만들 때 마다, 이것을 해줘야할 것이다. npm init을 하면, package.json이 성공적으로 생성된 것을 확인할 수 있다
+
+그 다음 express.js를 설치하자 npm install express를 실행하면 express가 설치되었고, package.json에서 확인할 수 있다.
+
+```javascript
+const express = require("express");
+const app = express();
+
+app.listen(3000, function (){
+    console.log("server started in 3000");
+    
+}); // 특정 포트에 리슨을 하겠다는 의미이다. 
+
+```
+처음으로 작성한 서버코드이다. 3000번 포트에 리슨을 걸어두어서, localhost:3000으로 접근하면 오류 메시지를 확인할 수 잇고, 터미널에서는 선언한 로그 메시지를 볼 수 있다. 
+
+localhost:3000 으로 선언한 서버에 접근할 수 있는데, 이건 www.google.com으로 구글 서버에 접근하는 것과 같다. 
+
+다음과 같은 코드를 js에 추가하였다.
+```javascript
+
+app.get("/",function(request, response){
+    console.log(request);
+    
+});
+```
+app을 3000번 포트에 listen을 걸어 두었고, get에 주소를 / 을 할당하였다. 그말은 localhost:3000으로 들어오는 get 요청을 처리해주겠다는 코드같다. 그래서 request로그를 보면 어머어마한 길이의 로그가 찍혀있는 것을 확인할 수 있다. 
+
+이때 사용자에게 응답을 주고 싶으면, 
+`response.send("hello");`
+이 코드를 추가하면 응답 메시지가 리턴된다. 그리고 GET 메소드에대한 응답만 지정해주어서, post 메소드로 요청을 보내면 오류가 발생한다!!
+
+그리고 요청과 응답 파라미터 명을 req, res로 많이 쓴다. 
