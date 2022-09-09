@@ -323,7 +323,22 @@ app을 3000번 포트에 listen을 걸어 두었고, get에 주소를 / 을 할�
 
 계산기 예제를 만들어보자, calculator 폴더를 만들고, calculator.js를 생성한다. npm init으로 package.json을 생성하고, npm install express로 express를 생성한다. 그러고 나서 calculator.js에서 require("express")를 하고, app = express()로 앱을 생성하고, 3000번 포트를 열어두었다.
 
+html form으로 버튼이 눌렸을때, / 에 post 요청을 보내게 하였다. 
+```html
+<form action="/" method="post">
+			<input type="text" name="num1" placeholder="First Number">
+			<input type="text" name="num2" placeholder="Second Number">
+			<button type="submit" name="submit">Calculate</button>
+		</form>
+```
+이러고 버튼을 눌러보면, 에러가 뜨는데, 그건 왜냐면 /에 post요청을 처리하도록 처리하지 않았다. 
+```javascript
+app.post("/", function (req, res) {
+	res.send("haha"); // post에 대한 간단한 응답
+});
+```
+이 코드를 입력한 후에는 오류가 뜨지 않는다. 그리고 아직은 form 데이터에 접근할 수 없다. 강의에 따르면 새로운 패키지를 설치해야한다고 한다. npm install body-parser을 입력하면 된다
 
-
+브라우저에서 Html을 확인하면, html안에 있는 코드를 다 확인할 수 있는데, 예제에서는 프론트를 백을 분리해서, 사용자는 내부 Js 코드를 확인할 수 없다
 
 
