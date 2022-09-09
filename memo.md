@@ -319,3 +319,11 @@ app을 3000번 포트에 listen을 걸어 두었고, get에 주소를 / 을 할�
 이 코드를 추가하면 응답 메시지가 리턴된다. 그리고 GET 메소드에대한 응답만 지정해주어서, post 메소드로 요청을 보내면 오류가 발생한다!!
 
 그리고 요청과 응답 파라미터 명을 req, res로 많이 쓴다. 
+
+
+계산기 예제를 만들어보자, calculator 폴더를 만들고, calculator.js를 생성한다. npm init으로 package.json을 생성하고, npm install express로 express를 생성한다. 그러고 나서 calculator.js에서 require("express")를 하고, app = express()로 앱을 생성하고, 3000번 포트를 열어두었다.
+
+
+
+
+
