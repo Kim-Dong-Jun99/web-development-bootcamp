@@ -353,6 +353,42 @@ Node js에서 외부 api에 요청 메시지를 어떻게 보낼까
 > node js에는 내부적으로 https라는 라이브러리가 있다. `const https = require("https");`
 > 이렇게 해서 https를 선언하고, https.get()내부에 https를 포함한 주소를 넘겨주면, get 리퀘스트를보낼 수 있다
 
+**API 정리**
+API에서 좀 중요한 것을 몰아쳐서 배워서 정리하고 넘어가보자, 우선 처음 자바스크립트 서버를 개발할때 무엇을 해야하나
+> 우선 폴더를 만들고, app.js나 js 파일을 하나 만든다. 그리고 나서 npm init을 터미널에 입력하고, 엔터를 계속 쳐서 디폴트 세팅으로 완료한다
+> 그 다음, package.json이 생성되면, npm install express를 한다. 이 명령어를 실행해야지, express 를 사용할 수 있다. 그 다음, 
+> ```javascript
+> const express = require("express");
+> const app = express();
+> app.get("/", function(req, res){
+>   
+>   res.send("hello world");
+> });
+>
+> app.listen(3000, function (){
+>   console.log("server start in 3000");
+> });
+> ```
+> 이렇게 하면 3000번 포트에 express 서버를 띄운 것이다. 그다음 index.html 파일을 만들어서 리턴하고 싶으면, res.sendFile(__dirname+"index.html")하면된다.
+> 그리고 https 를 사용해서 api를 사용할 수 있는데, 
+> ```javascript
+> https.get(url, function (response){
+>   response.on("data", function (data){
+>
+> });
+> });
+> ```
+> 이렇게 코드를 쓰면 api에서 리턴한 데이터를 사용할 수 있다. 근데 `console.log(response)`를 실행해보면, api에서 보낸 데이터를 확인할 수 있는데, 굳이 response.on~~ 이코드는 왜 있는걸까?
+> 그 이유는 reponse.on에서 넘겨주는 data를 통해서, api로 넘겨온 데이터를 바로 자바스크립트 객체로 읽어올 수 있기 때문이다!
+> 여기까지 오면 핵심 내용은 거의 끝이다. 업그레이드로 사용자가 입력한 도시의 날씨 정보를 알기 위해서, index.html에 html form을 만들고 post로 데이터를 보내게 하였다. app.post를 만들고, 그전에 npm install body-parser를 이용해서, request 안에 있는 데이터를 확인할 수 잇게 하였다. body-parser를 설치하고, 
+> ```javascript
+> const bodyParser = require("body-parser");
+> app.use(bodyParser.urlencoded({extended:true}));
+>
+> ```
+> 까지 해주면 body parser을 이용할 수 있다. 그래서 
+> `let cityName = req.body.cityname;` 으로 사용자가 입력한 도시 이름을 바로 읽어올 수 있다
+
 
 
 
