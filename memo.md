@@ -389,8 +389,14 @@ API에서 좀 중요한 것을 몰아쳐서 배워서 정리하고 넘어가보�
 > 까지 해주면 body parser을 이용할 수 있다. 그래서 
 > `let cityName = req.body.cityname;` 으로 사용자가 입력한 도시 이름을 바로 읽어올 수 있다
 
+## bootstrap 활용하기 
+bootstrap에 있는 example을 그대로 복사해서 사용하면 괜찮게 보이는 웹페이지 토대를 빠르게 만들 수 있다. 이때, CDN으로 css을 걸어주고, 커스텀 css 코드는 복사 붙여넣기하면, 예제에 있는 화면과 비슷한 화면이 바로 생성된다
 
+html에 css를 적용하려면, js에 static 파일이 어디있는지 알려줘야한다.
+`app.use(express.static("public"));` 이 코드로 알려줄 수 있다.
 
+이제 베포를 진행해보자, mailchimp 실습은 지속적인 오류로 스킵하고, 베포 과정만 진행해보겠다
 
+먼저 heroku에 가입을 하고, nodejs를 클릭하면, 베포 과정에 대한 설명을 볼 수 있다
 
 
