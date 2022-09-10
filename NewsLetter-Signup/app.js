@@ -35,6 +35,6 @@ app.post("/", function (req, res) {
     res.send(jsonData);
 });
 
-app.listen(3000, function () {
-    console.log("server is running on 3000");
+app.listen(process.env.PORT || 3000, function () {
+    console.log("server is running on "+process.env.PORT);
 });

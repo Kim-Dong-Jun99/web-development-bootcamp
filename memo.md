@@ -397,6 +397,19 @@ html에 css를 적용하려면, js에 static 파일이 어디있는지 알려줘
 
 이제 베포를 진행해보자, mailchimp 실습은 지속적인 오류로 스킵하고, 베포 과정만 진행해보겠다
 
-먼저 heroku에 가입을 하고, nodejs를 클릭하면, 베포 과정에 대한 설명을 볼 수 있다
+먼저 heroku에 가입을 하고, nodejs를 클릭하면, 베포 과정에 대한 설명을 볼 수 있다. heroku를 통해서 베포하면, heroku 서버에서 어떤 포트를 쓸지 우리는 모른다. 그래서 코드를 약간 변경해줘야한다.
+```javascript
+app.listen(process.env.PORT || 3000, function () {
+    console.log("server is running on "+process.env.PORT);
+});
+```
+저 프로세스 포트는 heroku에서 쓰일 포트이고, 3000은 우리 로컬에서 쓰일 포트이다. 그리고 procfile을 만들어야한다. 
+touch Procfile로 만들고, `web: node app.js`이것을 추가해주자, 그 다음, 깃에 추가해줘야한다. 나는 이미 이 프로젝트에 깃이 있어서 작성한 코드를 복사해서 새로운 디렉토리를 만들고, 깃을 추가했다, 그다음 add .을 해주고, 커밋을 해주자, 그 다음, heroku login된 상태에서, heroku create을 해주면, 링크가 생성된다, 링크를 방문해보면, 아직 아무것도 보이지 않는다. 왜냐면 아직 푸쉬 하지 않았기에!
+git push heroku master을 실행하면 베포가 끝났다!
+
+그다음 변경 사항이 생기면, git add . git commit git push heroku master을 해주면 바로바로 반영된다
+
+
+
 
 
