@@ -4,7 +4,10 @@ const app = express();
 
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended: true}));
-let schedules = [];
+app.use(express.static("public"));
+let newItems= ["study","project"];
+let workItems = [];
+
 app.get("/", function (req, res) {
     let today = new Date();
     // let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
@@ -26,21 +29,42 @@ app.get("/", function (req, res) {
     let day = today.toLocaleDateString("en-us", options);
 
     res.render("list",{
-        day: day,
-        schedules: schedules,
+        listTitle: day,
+        newItems: newItems,
 
     });
 
 });
 
 app.post("/", function (req, res) {
-    schedules.push( req.body.schedule);
+    if (req.body.list === "Work") {
+        workItems.push(req.body.newItem);
+        res.redirect("/work")
+    }else{
 
-    console.log(schedules[schedules.length-1]);
+        newItems.push( req.body.newItem);
 
-    res.redirect("/");
+
+        res.redirect("/");
+
+    }
+});
+
+app.get("/work", function (req, res) {
+    res.render("list",{
+        listTitle: "Work List",
+        newItems: workItems
+    })
+});
+
+app.post("/work", function (req, res) {
+    workItems.push(req.body.item);
 });
 
 app.listen(process.env.PORT || 3000, function () {
     console.log("server started");
+});
+
+app.get("/about", function (req, res) {
+    res.render("about");
 });
