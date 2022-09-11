@@ -1,6 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
+const date = require(__dirname+"/date.js");
 
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended: true}));
@@ -9,24 +10,7 @@ let newItems= ["study","project"];
 let workItems = [];
 
 app.get("/", function (req, res) {
-    let today = new Date();
-    // let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-
-    // if (today.getDay() === 6 || today.getDay() === 0) {
-    //     day = "Weekend"
-    //     // res.send("<h1>today is weekend!!</h1>");
-    // } else {
-    //     day = "Weekday"
-    //     // res.sendFile(__dirname + "/index.html");
-    // }
-    // res.render("list", {day: days[today.getDay()]});
-
-    let options = {
-        weekday: "long",
-        day: "numeric",
-        month: "long"
-    };
-    let day = today.toLocaleDateString("en-us", options);
+    let day = date.getDay();
 
     res.render("list",{
         listTitle: day,

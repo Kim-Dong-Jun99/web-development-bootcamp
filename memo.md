@@ -466,3 +466,41 @@ ejs나 다른 뷰 엔진을 사용하려면 views라는 새로운 폴더를 생�
 
 ejs로 html에 html을 포함할 수 있다. 그리고 동적으로 데이터를 주고 받기도 편리하다
 
+## 노드 모듈 이해하기
+지금 app.js에 날짜 구하는 코드를 다른 파일에 저장해놓고 실행하고 싶다. 어떻게 하면될까. 노드가 이때 도움을 줄 수 있을 것 같다
+module.exports로 무엇을 내보낼지 정하고, app.js에서 받아서 그 함수를 실행할 수 있다
+하나가 아니라 다수의 함수를 내보내고 싶으면 어떻게 해야될까??
+exports로 내보내는 것은 오브젝트라서, 
+```javascript
+module.exports.getDate = getDate;
+module.exports.getDay = getDay;
+```
+이렇게 여러개를 내보낼 수 있다, 저렇게 묶어서 내보내면, `const date = require(__dirname+"/date.js");`여기서 두개의 함수 모두 다 사용할 수 있다
+
+```javascript
+exports.getDate = function (){
+
+    let today = new Date();
+
+    let options = {
+        weekday: "long",
+        day: "numeric",
+        month: "long"
+    };
+    return today.toLocaleDateString("en-us", options);
+
+}
+
+exports.getDay = function (){
+    let today = new Date();
+
+    let options = {
+        weekday: "long",
+    };
+    return today.toLocaleDateString("en-us", options);
+
+}
+```
+리팩터링해서 수정한 date.js
+
+
