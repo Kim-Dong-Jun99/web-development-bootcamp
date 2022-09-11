@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>To Do List</title>
+</head>
+<body>
+<h1><%=day%> ToDoList</h1>
+<ul>
+    <li>Study</li>
+    <li>Homework</li>
+    <li>Cleaning</li>
+    <% for(var i = 0;i < schedules.length;i++){ %>
+        <li><%= schedules[i]%></li>
+    <%}%>
+</ul>
+
+<form action="/" method="post">
+    <input name="schedule" type="text" placeholder="new Schedule">
+    <button type="submit" name="button">Submit</button>
+</form>
+
+
+
+
+</body>
+</html>

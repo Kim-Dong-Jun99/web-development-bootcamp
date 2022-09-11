@@ -36,5 +36,5 @@ app.post("/", function (req, res) {
 });
 
 app.listen(process.env.PORT || 3000, function () {
-    console.log("server is running on "+process.env.PORT);
+    console.log("server is running on ");
 });
