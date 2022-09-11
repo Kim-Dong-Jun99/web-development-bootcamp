@@ -409,6 +409,53 @@ git push heroku master을 실행하면 베포가 끝났다!
 
 그다음 변경 사항이 생기면, git add . git commit git push heroku master을 해주면 바로바로 반영된다
 
+## Git 정리
+새로운 폴더를 만들고, 그 안에 텍스트 파일을 생성했고, git init으로 git을 시작하였다 파일을 생성했으면, 스테이징 단계에 파일을 추가해줘야한다.
+스테이징 단계로 추가하는 것은 git add로 추가할 수 있다 git status로 스테이징 단계를 확인해보면,
+untracked로 나오는 것을 확인할 수 있다
+staging 단계로 추가하려면, git add 해줘야한다. git add filename으로 추가할 수 있고, 
+git rm --cached filename으로 삭제할 수 있는 것 같다
+git log으로 커밋들을 확인할 수도 있다
+강의를 보다보니, 강사님와 내 git log에서 다른 점을 발견하였다. author인데,
+강사님 Pc에서는 저자가 Pc 즉 로컬 정보인 반면에, 나는 내 깃허브 주소로 뜬다
+git config에서 설정이 되어있기에 그런 것 같다. 내가 이미이 피씨에서 작업을 해서
+깃허브에 원격으로 업로드 하였기에 설정이 다르게 뜨는 것 같다.
+로컬에서 작업하다가, 꼬였다! 롤백하고 싶다, 그러면 git checkout chapter3.txt로
+가장 마지막에 커밋한 버전으로 변경할 수 있다
+
+로컬에서 작업하고, 깃허브에 올리고 싶으면, 일단 깃허브 레포를 생성하고, 
+git remote add origin 깃주소 를 하면된다!
+```
+❯ git remote add origin https://github.com/Kim-Dong-Jun99/Story.git
+❯ git branch -M main
+❯ git push -u origin main
+```
+branch 명까지 명시해주고, 푸쉬해주면, 잘 반영되는 것을 확인할 수 있다
+
+git ignore는 어떻게 설정해줄까?
+DS_store 은 세팅 파일이라서 깃허브에 안 올려두는 것이 좋다.
+
+git ignore는 어떻게 만드냐, 히든 파일을 만들면 되는데, .gitignore라는 파일을 만들면된다
+.gitignore에 무시해야하는 파일을 만들 수 있다
+DS_Store랑 secrets.txt는 안 올리고 싶다. 그럴때는 git rm --cached -r . 하면 모든 파일이 스테이징 단계에서 해제된다
+.gitignore에는 제외할 파일이름을 하나하나 입력해도된다
+주석은 #로 입력한다. *.txt는 .txt 확장자는 무시하라는ㅇ 의미이다.
+gitignore에 추가하면, git add . 해도 무시된다
+
+## git clone
+git 주소를 따서 git clone하면 프로젝트가 생성된다
+마스터 브랜치에는 잘 돌아가는 코드만 올릴 수 있게, 브랜치를 나눠서 개발한다
+새로운 브랜치는 git branch로 할 수 있다 그리고 git checkout으로 브랜치를 옮길 수 있다
+
+브랜치를 바꾸면서 로컬 파일들도 변경되는 것을 확인할 수 있다. merge하려면 어떻게 해야될까
+
+브랜치를 main으로 바꾸고, git merge sf-plot을 입력하면, merge가 된다. 
+
+rebase를 하면 병렬이 아니라, 순차적으로 개발한 것처럼 개발 내용을 합칠 수 있다
+
+오픈 소스 협업은 어떻게 진행하면 좋을까
+포킹과 풀리퀘로 진행할 수 있다. 내 원격 저장소를 누군가가 포크하고, 로컬에서 개발해서 내용을 추가했다고 해보자
+그다음 그걸 푸쉬하고, 푸쉬 내용이 내 저장소에 반영되려면 풀 리퀘를 열어야한다
 
 
 
