@@ -505,3 +505,51 @@ exports.getDay = function (){
 
 ## 노드에서 라우팅 파라미터는 어떻게 설정할까?
 :topic 을 입력해서 설정할 수 있다, 그거 말고 다른 변수들은??
+
+## databases
+데이터베이스에는 두가지 유형이 있다. SQL과 NoSQl, SQL에서 유명한 두가지 데이터베이스는 Mysql과 Postgresql, NoSQL에서는 mongoDb와 redis가 유명하다, sql과 nosql의 차이는?? nosql이 좀 더 유연하다! 하지만, 연관관계 맺기에는 sql이 더 유리하다, 근데 scalability는 Nosql이 더 우세하다. 
+
+**Mysql VS MongoDB**
+
+|Mysql| MongoDB      |
+|-----|--------------|
+|more mature| shiny and new|
+|Table structure| Document structure|
+|Requires a schema|More flexible to changes|
+|Great with relationships|Not great with relationships|
+|scales vertically|scaleshorizontally|
+
+
+개인적으로도 sql이 더 관리하기 편할 것 같다
+
+mongoDB는 nosql이라서 그런가, 파이어베이스와 매우 유사하게 사용할 수 있었다.
+`db.컬렉션 명.insertOne({})`을 통해서 아주 손쉽게 데이터 하나를 추가하였고, MongoDB Compass에서도 확인 가능 하였다
+
+when we type collections, we can check collections in current database
+MongoDb is extremely well documented so we can always check for information
+
+how can we read data from the collection??
+we can check collections by show collections(), but we can't check for document, 
+here is the solution:
+we can get all the products by db.컬렉션 명.find() 
+if we want to find a specific document, we can set query selectors
+and can combine queries by logical operators
+ex of query:
+```db.products.find({name:"Pen"})
+[ { _id: 1, name: 'Pen', price: 1.2 } ]
+```
+and also can use arithmetic operators
+```
+db.products.find({price:{$gt:3}})
+[ { _id: 2, name: 'Tumblr', price: 5, sale: 10 } ]
+```
+for more info check official documentation
+
+and we by second parameter, we can select field of data to see, and we can hide id by_id:0
+
+to update, we can just use it like below:
+db.products.updateOne({_id:1},{$set:{sale:"none"}})
+used $set to specify that new field is being inserted
+
+delte is more simple we can just specify what to delete when using deleteOne
+
