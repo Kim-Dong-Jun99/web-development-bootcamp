@@ -562,3 +562,76 @@ we will use mongoose in Nodejs
 short cut for npm init -> by typing npm init - y no need for repetitive enter key
 but first lets use traditional one
 lecture shows connecting to local db, but i used atals cloud, and connection was succesful
+
+```javascript
+
+// jshint esversion:6
+const MongoClient = require('mongodb').MongoClient;
+const assert = require('assert');
+const {log} = require('console');
+const url = "empty for confidential";
+
+const dbName = 'fruit_proj';
+
+const client = new MongoClient(url);
+
+client.connect(function(err){
+  assert.equal(null, err);
+  log("Connected successfully");
+
+  const db = client.db(dbName);
+  insertDocument(db, function(){
+
+   client.close();
+  })
+});
+
+const insertDocument = function(db, callback){
+  const collection  = db.collection('fruits');
+
+  collection.insertMany([
+    {
+      name:"Apple",
+      score:8,
+      review:"Great fruit"
+    },
+    {
+      name:"Orange",
+      score:6,
+      review:"Kinda sour"
+    },
+    {
+      name:"Banana",
+      score:9,
+      review:"Great taste"
+
+    }
+
+
+  ], function(err, result){
+    assert.equal(err,null);
+    //    assert.equal(3,result.result.n);
+    // assert.equal(3,result.ops.length);
+    log("Inserted 3 documents into the collection");
+    callback(result);
+  });
+};
+
+```
+
+code for app.js in fruits
+
+reading data from database:
+```javascript
+
+const findDocuments = function(db, callback){
+  const collection  = db.collection('fruits');
+  collection.find({}).toArray(function(err, docs){
+    log("Found the records");
+    log(docs);
+    callback(docs);
+  });
+};
+```
+
+
