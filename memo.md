@@ -553,3 +553,12 @@ used $set to specify that new field is being inserted
 
 delte is more simple we can just specify what to delete when using deleteOne
 
+what about relationship??
+
+i have created nested document but i couldn't name the collection, 
+
+# connecting mongoDB with nodejs
+we will use mongoose in Nodejs
+short cut for npm init -> by typing npm init - y no need for repetitive enter key
+but first lets use traditional one
+lecture shows connecting to local db, but i used atals cloud, and connection was succesful
