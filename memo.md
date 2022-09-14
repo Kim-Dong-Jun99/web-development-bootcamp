@@ -633,5 +633,73 @@ const findDocuments = function(db, callback){
   });
 };
 ```
+by using mongoose, using mongodb gets a lot easier
+we can connect to a database simply using
+`mongoose.connect()`
+
+to insert a data, we have to first specify a schema that looks like this:
+```javascript
+const fruitSchema = new mongoose.Schema({
+  name:String,
+  rating:Number,
+  review:String
+});
+```
+then, create a collection :
+```javascript
+const Fruit = mongoose.model("Fruit", fruitSchema);
+```
+left parameter represents a collection name and must be singular
+to insert data, its very easy;
+```javascript
+
+const fruit = new Fruit({
+  name:"Apple",
+  rating:7,
+  review:""
+});
+
+fruit.save();
+```
+
+by running brand new app.js, new database named test initialized, 
+and inside test database, new fruits collection has been made
+
+to insert various datas:
+```javascript
+Fruit.insertMany([kiwi, orange, banana], function(err){
+  if(err){
+    log(err);
+  }else{
+    log("Successfully saved")
+  }
+})
+```
+finding data:
+```javascript
+Fruit.find(function(err, fruits){
+  if (err){
+    log(err);
+  } else {
+    log(fruits);
+  }
+})
+
+```
+db connection close didn't work on mine, 
+
+how to validate data in mongoose, 
+```javascript
+const fruitSchema = new mongoose.Schema({
+  name:String,
+  rating:{
+    type:Number,
+    min:1,
+    max:10
+  },
+  review:String
+});
+```
+when we insert a data with rating bigger than 10, it throws a validation error
 
 
