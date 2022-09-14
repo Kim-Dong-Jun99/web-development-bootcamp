@@ -702,4 +702,34 @@ const fruitSchema = new mongoose.Schema({
 ```
 when we insert a data with rating bigger than 10, it throws a validation error
 
+how to create nested document:
+```javascript
+
+const pineapple = new Fruit({
+  name:"Pineapple",
+  rating:9,
+  review:"very sweet"
+});
+
+const personSchema = new mongoose.Schema({
+  name:String,
+  age:Number,
+  favoriteFruit:fruitSchema
+})
+
+const Person = mongoose.model("Person", personSchema);
+
+pineapple.save();
+
+const Amy = new Person({
+  name:"Amy",
+  age:20,
+  favoriteFruit:pineapple
+})
+
+Amy.save();
+
+
+```
+
 
