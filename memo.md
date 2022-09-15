@@ -741,4 +741,17 @@ todolist를 버전 2로 업그레이드 해보았다. 버전 1은 데이터도 �
 
 자 이제 만든 것을 베포해보자. 디비까지 연결되어있는데 어떻게 베포할까? 일단 디비는 아틀라스 클라우드에 띄워져있는데, 설정을 어떻게 해야할까, 물론 문제 없을 수도 있을 것 같긴한데, heroku로 베포할때, 깃을 이용해서 베포하는 것 같았다. 근데 현재 url를 깃 이그노어 걸어놔서 깃에 포함되지 않은 상태인데, 어떻게 사용하는지 확인해봐야할 것 같다. 아 아이피 제한을 걸어놔서 상관 없나??맞네 클러스터에는 접근안될 것 같아서 열어두어도 될 것 같다.
 
+client makes a request to a server, 레스트랑에 비유를 해보면, 클라이언트가 피자 가져다 주세요라고 웨이터(서버)에서 요청을 보내면, 서버는 그 요청을 받아드려서 피자를 클라이언트에게 배달한다.
+하지만, 클라이언트가 메뉴가 없는 것을 요청하면 서버는 그것을 제공할 수 없다. 인터넷에서는 이 클라이언트가 서버에 요청을 보내는 것을 http request를 통해서 이루어진다
+REST는 FTP, HTTP 등 다양한 프로토콜이 있는데, 그런 프로토콜을 통일 시켜주기 위해서 사용하는 것 같다. REST한 API를 만들기 위해서는 GET, POST, PUT, PATCH, DELETE를 사용해야한
+get - read, post - create, put, patch - update, delete - delete
+
+|HTTP verbs|/articles|/articles/jack-bauer|
+|------|----------|---------------|
+|GET|Fetches all the articles|Fetches the article on jack-bauer|
+|POST|creates on article|-|
+|PUT|-|Updates the article on jack-bauer|
+|PATCH|-|Updates the article on jack-bauer|
+|DELETE|Deletes all articles|Deletes all articles of jack-bauer|
+
 
