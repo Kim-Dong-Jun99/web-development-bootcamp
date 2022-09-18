@@ -755,3 +755,4 @@ get - read, post - create, put, patch - update, delete - delete
 |DELETE|Deletes all articles|Deletes all articles of jack-bauer|
 
 
+express 는 app.route로 편리하게 요청을 관리할 수 있다.put, patch 차이점 -> patch는 요소 중 일부만 업데이트할 수 있다
