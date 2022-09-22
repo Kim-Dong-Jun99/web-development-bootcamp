@@ -756,3 +756,12 @@ get - read, post - create, put, patch - update, delete - delete
 
 
 express 는 app.route로 편리하게 요청을 관리할 수 있다.put, patch 차이점 -> patch는 요소 중 일부만 업데이트할 수 있다
+
+
+## security
+디비에 들어있는 암호를 encrypt 해보자, 암호화를 해놓으면 그것을 열 수 있는 키가 필요하다. mongoose-encryption을 이용하면 암호화를 쉽게 할 수 있다. 먼저 schema를 mongoose schema로 지정해줘야한다. 그리고 간단하게는 schema에 플러그인으로 시크릿으로 지정할 스트링을 넘겨주면 된다. 그리고 모든 필드를 다 암호화하는 것이 아닌 특정 필드만 암호화하는 것이 좋다
+`userSchema.plugin(encrypt,{secret: secret, encryptedFields: ['password']});`
+암호화하는 코드이다, 이러면 save할때 암호화되고, find할때 암호가 해제되는 것을 확인할 수 다
+
+근데 이렇게 암호화하면 암호가 노출된다. 어떻게 안 노출되게 암호화할 수 있을까, 우선 dotenv를 설치하자 
+
