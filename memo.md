@@ -768,3 +768,12 @@ heroku로 베포할때는 환경변수를 설정할 수 있는 다른 방법이 
 
 ## cookie session
 쿠키랑 세션에 대해서 알아보자, 쿠키를 브라우저에 심어놔서,장바구니에 아이템을 계속 저장할 수 잇다, 쿠키를 삭제하면, 장바구니에 담긴 물건들이 사라진다. 쿠키는 다른 웹사이트에서도 사용될 수 있다. 타겟팅 광고가 이런식으로 작동한다. 리퀘스트를 서버에 보내면, response로 쿠키를 담아서 보낸다, 그렇다면 세션은 무엇일까, 세션은 로그인되어있는 시점부터 로그아웃하는 시점까지 유지된다. 인프런 쿠키, 세션 강의를 다시 들어봐야겠다. 
+passport js를  사용해보자, 원래는 bcrypt로 해슁을 했는데, passport를 사용해서 진행해보자,
+serialise - only necessary when using session, creates cookie and stuffs message, 
+
+order is important, 
+
+## Oauth
+oauth에 앱을 클라이언트로 등록해 놓으면, 해당 서비스의 authentication을 이용할 수 있다. passport에는 구글, 깃허브, 등등을 이용할 수 있다. 
+
+## React
